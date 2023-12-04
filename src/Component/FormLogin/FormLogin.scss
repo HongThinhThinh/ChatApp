@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+.formLoginWrap {
+  background-color: white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  padding: 100px;
+  .LoginTitle {
+    text-align: center;
+    font-family: "Dancing Script", cursive;
+    margin-bottom: 25px;
+  }
+}

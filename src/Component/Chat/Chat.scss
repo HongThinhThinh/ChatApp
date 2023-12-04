@@ -1,0 +1,11 @@
+.chat {
+  height: 100%;
+  &-info {
+    padding: 10px;
+    height: 80%;
+    overflow-y: scroll;
+  }
+  &-input {
+    height: 10% !important;
+  }
+}
