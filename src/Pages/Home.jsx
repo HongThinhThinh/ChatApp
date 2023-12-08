@@ -2,13 +2,17 @@ import React from "react";
 import Chat from "../Component/Chat/Chat";
 import { SideBar } from "../Component/SideBar/SideBar";
 import "./Home.scss";
-import { Input } from "../Component/Input/Input";
+import AOS from "aos";
+import Search from "../Component/Search/Search";
+AOS.init();
+
 function Home() {
   return (
     <div className="home">
-      <div className="container">
+      <div data-aos="fade-right" className="container">
         <div className="sidebarPage">
           <SideBar />
+          <Search />
         </div>
         <div className="navbarPage">
           <Chat />

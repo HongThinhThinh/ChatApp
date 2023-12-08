@@ -7,9 +7,17 @@
   justify-content: center;
   border-radius: 30px;
   padding: 100px;
+  position: relative;
   .LoginTitle {
     text-align: center;
     font-family: "Dancing Script", cursive;
     margin-bottom: 25px;
+  }
+  .arrow {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    color: #4e9aff;
+    cursor: pointer;
   }
 }
