@@ -59,6 +59,10 @@ export const Input = () => {
     setText("");
     setImg(null);
   };
+
+  const handleKey = async (e) => {
+    e.code === "Enter" && (await handleSend());
+  };
   return (
     <div className="input">
       <input
@@ -66,6 +70,7 @@ export const Input = () => {
         placeholder="Type Something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKey}
       />
       <div className="send">
         <input
