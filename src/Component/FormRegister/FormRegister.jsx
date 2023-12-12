@@ -6,10 +6,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Arrow from "../Arrow/Arrow";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db, storage } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import uploadFile from "../../hooks/useUpload";
 // or via CommonJS
 const Swal = require("sweetalert2");
 AOS.init();
@@ -17,49 +17,42 @@ AOS.init();
 function FormRegister() {
   const navigate = useNavigate();
 
-  const defaultAvatar = "https://pnganime.com/web/images/blog_images/done.webp";
+  // const defaultAvatar = "https://pnganime.com/web/images/blog_images/done.webp";
   const onFinish = async (values) => {
     console.log(values);
     const displayName = values.username;
     const email = values.email;
     const password = values.password;
     try {
+      let URL;
       const res = await createUserWithEmailAndPassword(auth, email, password);
       console.log(res.user);
-      const storageRef = ref(storage, displayName);
-      //upload file
-      await uploadBytesResumable(storageRef, file).then(() => {
-        // get file vừa upload
-        getDownloadURL(storageRef).then(async (downloadURL) => {
-          console.log(downloadURL);
-          if (!file) {
-            downloadURL = defaultAvatar;
-          }
-          try {
-            //Update profile
-            await updateProfile(res.user, {
-              displayName,
-              photoURL: downloadURL,
-            });
-            //create user on firestore
-            await setDoc(doc(db, "users", res.user.uid), {
-              uid: res.user.uid,
-              displayName,
-              email,
-              photoURL: downloadURL,
-            });
-            Swal.fire({
-              title: "Good job!",
-              text: "SignUp SuccessFully",
-              icon: "success",
-            });
-            navigate("/login");
-          } catch (err) {
-            console.log(err);
-          }
-        });
+      if (typeof file !== "string") {
+        URL = await uploadFile(file);
+      } else {
+        URL = file;
+      }
+      await updateProfile(res.user, {
+        displayName,
+        photoURL: URL,
       });
+      //create user on firestore
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        displayName,
+        email,
+        photoURL: URL,
+      });
+      // chat của mỗi user, ban đầu là object trống nhưng khi nhắn tin với ai sẽ update
+      await setDoc(doc(db, "userChat", res.user.uid), {});
+      Swal.fire({
+        title: "Good job!",
+        text: "SignUp SuccessFully",
+        icon: "success",
+      });
+      navigate("/login");
     } catch (error) {
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "error",
@@ -67,7 +60,9 @@ function FormRegister() {
       });
     }
   };
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(
+    "https://pnganime.com/web/images/blog_images/done.webp"
+  );
 
   return (
     <div>

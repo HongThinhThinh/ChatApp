@@ -5,24 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthContextProvider } from "./AuthContext";
 import { ToastContainer } from "react-toastify";
+import { ChatContextProvider } from "./Context/ChatContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContextProvider>
-    <App />
-    <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
-    />
-    {/* Same as */}
-    <ToastContainer />
+    <ChatContextProvider>
+      <App />
+      <ToastContainer />
+    </ChatContextProvider>
   </AuthContextProvider>
 );
 

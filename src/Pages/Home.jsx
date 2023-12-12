@@ -4,6 +4,7 @@ import { SideBar } from "../Component/SideBar/SideBar";
 import "./Home.scss";
 import AOS from "aos";
 import Search from "../Component/Search/Search";
+import Friend from "../Component/Friend/Friend";
 AOS.init();
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
         <div className="sidebarPage">
           <SideBar />
           <Search />
+          <Friend />
         </div>
         <div className="navbarPage">
           <Chat />
