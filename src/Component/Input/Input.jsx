@@ -20,11 +20,8 @@ export const Input = () => {
   const { data } = useContext(ChatContext);
   const inputRef = useRef();
   const handleSend = async (imgNew) => {
-    let imgUpload;
-    if (imgNew) imgUpload = imgNew;
-    else imgUpload = img;
-    if (imgUpload) {
-      let URL = await uploadFile(imgUpload);
+    if (imgNew) {
+      let URL = await uploadFile(imgNew);
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
           id: uuid(),
@@ -66,6 +63,9 @@ export const Input = () => {
   const handleKey = async (e) => {
     e.code === "Enter" && (await handleSend());
   };
+  const checkSend = (e) => {
+    handleSend();
+  };
   return (
     <div
       className="input"
@@ -94,7 +94,7 @@ export const Input = () => {
         <label htmlFor="file">
           <CiImageOn />
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button onClick={checkSend}>Send</button>
       </div>
     </div>
   );
