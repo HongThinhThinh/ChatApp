@@ -59,7 +59,7 @@ function FormRegister() {
     }
   };
   const [file, setFile] = useState(
-    "https://pnganime.com/web/images/blog_images/done.webp"
+    "https://api-private.atlassian.com/users/62ebe5ece9e887b64753f5587dac8926/avatar"
   );
 
   return (

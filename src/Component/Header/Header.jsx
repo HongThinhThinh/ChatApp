@@ -12,8 +12,7 @@ function Header() {
       <div className="backk">
         <FaArrowLeftLong />
       </div>
-
-      <h4 className="nameOfFr">{data.user?.displayName}</h4>
+      <h4 className="nameOfFr">{data.chatId ? data.user.displayName : "cc"}</h4>
       <div className="call-icon">
         <FaVideo />
         <FaUserFriends />

@@ -19,10 +19,12 @@ export const Input = () => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const inputRef = useRef();
-  const handleSend = async () => {
-    console.log(img);
-    if (img) {
-      let URL = await uploadFile(img);
+  const handleSend = async (imgNew) => {
+    let imgUpload;
+    if (imgNew) imgUpload = imgNew;
+    else imgUpload = img;
+    if (imgUpload) {
+      let URL = await uploadFile(imgUpload);
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
           id: uuid(),
@@ -85,6 +87,7 @@ export const Input = () => {
           id="file"
           onChange={(e) => {
             setImg(e.target.files[0]);
+            handleSend(e.target.files[0]);
           }}
         />
 
