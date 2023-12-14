@@ -22,7 +22,11 @@ function Search() {
   // Create a query against the collection.
   const handleSearch = async (name) => {
     // querry dữ liệu từ db
-    const q = query(collection(db, "users"), where("displayName", "==", name));
+    const q = query(
+      collection(db, "users"),
+      where("displayName", ">=", name),
+      where("displayName", "<=", name + "\uf8ff")
+    );
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
