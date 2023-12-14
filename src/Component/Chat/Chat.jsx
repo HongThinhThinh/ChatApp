@@ -12,7 +12,6 @@ function Chat() {
   const { data } = useContext(ChatContext);
 
   useEffect(() => {
-    console.log(data.chatId);
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
       doc.exists() && setMessage(doc.data().messages);
     });
@@ -21,7 +20,6 @@ function Chat() {
       unSub();
     };
   }, [data.chatId]);
-  console.log(message);
   return (
     <div className="chat">
       <Header />

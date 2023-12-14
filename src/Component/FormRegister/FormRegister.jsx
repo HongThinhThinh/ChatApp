@@ -19,14 +19,12 @@ function FormRegister() {
 
   // const defaultAvatar = "https://pnganime.com/web/images/blog_images/done.webp";
   const onFinish = async (values) => {
-    console.log(values);
     const displayName = values.username;
     const email = values.email;
     const password = values.password;
     try {
       let URL;
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(res.user);
       if (typeof file !== "string") {
         URL = await uploadFile(file);
       } else {

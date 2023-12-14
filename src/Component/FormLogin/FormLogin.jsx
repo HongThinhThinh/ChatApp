@@ -17,7 +17,6 @@ function FormLogin() {
     const password = values.password;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user);
         navigate("/");
       })
       .catch((error) => {});

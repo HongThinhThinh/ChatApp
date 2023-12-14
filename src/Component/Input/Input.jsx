@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Input.scss";
-import { IoMdAttach } from "react-icons/io";
 import { CiImageOn } from "react-icons/ci";
 import { ChatContext } from "../../Context/ChatContext";
 import { AuthContext } from "../../AuthContext";
@@ -19,8 +18,9 @@ export const Input = () => {
   const [img, setImg] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
-
+  const inputRef = useRef();
   const handleSend = async () => {
+    console.log(img);
     if (img) {
       let URL = await uploadFile(img);
       await updateDoc(doc(db, "chats", data.chatId), {
@@ -32,6 +32,8 @@ export const Input = () => {
           img: URL,
         }),
       });
+      setText("");
+      setImg(null);
     } else {
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
@@ -41,6 +43,8 @@ export const Input = () => {
           date: Timestamp.now(),
         }),
       });
+      setText("");
+      setImg(null);
     }
     await updateDoc(doc(db, "userChat", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
@@ -55,29 +59,33 @@ export const Input = () => {
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
-
-    setText("");
-    setImg(null);
   };
 
   const handleKey = async (e) => {
     e.code === "Enter" && (await handleSend());
   };
   return (
-    <div className="input">
+    <div
+      className="input"
+      style={{ cursor: "pointer" }}
+      onClick={() => inputRef.current.focus()}
+    >
       <input
         type="text"
         placeholder="Type Something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
         onKeyDown={handleKey}
+        ref={inputRef}
       />
       <div className="send">
         <input
           style={{ display: "none" }}
           type="file"
           id="file"
-          onChange={(e) => setImg(e.target.files[0])}
+          onChange={(e) => {
+            setImg(e.target.files[0]);
+          }}
         />
 
         <label htmlFor="file">

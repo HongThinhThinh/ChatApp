@@ -20,10 +20,12 @@ function Friend() {
     currentUser.uid && getChat();
   }, [currentUser.uid]);
 
-  console.log(Object.entries(chat));
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
+  function truncate(string, n) {
+    return string?.length > n ? string.substr(0, n - 1) + "..." : string;
+  }
   return (
     <>
       <div className="search">
@@ -39,7 +41,7 @@ function Friend() {
                 <img src={chat[1].userInfo.photoURL} alt="" />
                 <div className="userChatInfo">
                   <span>{chat[1].userInfo.displayName}</span>
-                  <p>{chat[1].lastMessage?.text}</p>
+                  <p>{truncate(chat[1].lastMessage?.text, 27)}</p>
                 </div>
               </div>
             ))}

@@ -22,6 +22,24 @@
       flex-direction: column;
       color: white;
       background-color: #dddcf7;
+      position: relative;
+    }
+  }
+  .back {
+    background-color: #5f5b8f;
+    position: absolute;
+    left: 10px;
+    top: 30px;
+    cursor: pointer;
+    padding: 0 14px;
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .home {
+    .back {
+      display: block;
     }
   }
 }

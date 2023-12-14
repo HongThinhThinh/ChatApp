@@ -49,3 +49,13 @@
     }
   }
 }
+
+@media only screen and (max-width: 660px) {
+  .message {
+    .messageContent {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -5,7 +5,6 @@ import { auth } from "../../firebase";
 import { AuthContext } from "../../AuthContext";
 export const SideBar = () => {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return (
     <div className="navbar">
       <span className="logo">Hong Thinh App Chat</span>

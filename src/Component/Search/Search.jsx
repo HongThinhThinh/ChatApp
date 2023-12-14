@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Search.scss";
 import {
   collection,
@@ -18,10 +18,9 @@ function Search() {
   const [user, setUser] = useState(null);
   const [err, setError] = useState(false);
   const { currentUser } = useContext(AuthContext);
-
+  const inputRef = useRef();
   // Create a query against the collection.
   const handleSearch = async (name) => {
-    console.log(name);
     // querry dữ liệu từ db
     const q = query(collection(db, "users"), where("displayName", "==", name));
     try {
@@ -37,7 +36,6 @@ function Search() {
     e.code === "Enter" && handleSearch(userName);
   };
   const handleSelect = async () => {
-    console.log("clicked");
     // check whether the group exist or not in firestore
     const combinedId =
       currentUser.uid > user.uid
@@ -78,8 +76,13 @@ function Search() {
   return (
     <div>
       <div className="search">
-        <div className="searchForm">
+        <div
+          className="searchForm"
+          style={{ cursor: "pointer" }}
+          onClick={() => inputRef.current.focus()}
+        >
           <input
+            ref={inputRef}
             onInput={(e) => {}}
             type="text"
             placeholder="Find a user"

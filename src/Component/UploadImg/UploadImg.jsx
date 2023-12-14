@@ -4,7 +4,6 @@ import { Upload } from "antd";
 const UploadImg = () => {
   const [fileList, setFileList] = useState([]);
   const onChange = ({ fileList: newFileList }) => {
-    console.log(newFileList);
     setFileList(newFileList);
   };
   const onPreview = async (file) => {
