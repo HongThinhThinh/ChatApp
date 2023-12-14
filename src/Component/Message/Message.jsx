@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import "./Message.scss";
 import { AuthContext } from "../../AuthContext";
 import { ChatContext } from "../../Context/ChatContext";
+import ImgPreview from "../Image/Image";
 
 export const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
@@ -32,7 +33,11 @@ export const Message = ({ message }) => {
           </div>
           <div className="messageContent">
             {message.text && <p>{message.text}</p>}
-            {message.img && <img src={message.img} alt="" />}
+            {message.img && (
+              <div className="msg_img">
+                <ImgPreview src={message.img} />
+              </div>
+            )}
           </div>
         </div>
       )}

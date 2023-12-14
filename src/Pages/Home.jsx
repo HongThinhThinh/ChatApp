@@ -33,9 +33,9 @@ function Home() {
   }, [isMobile]);
   return (
     <div className="home">
-      <div data-aos="fade-right" className="container">
+      <div className="container">
         {showSideBar && (
-          <div className="sidebarPage">
+          <div data-aos="fade-right" className="sidebarPage">
             <SideBar />
             <Search />
             <div onClick={isMobile ? handleShowsideBar : undefined}>
@@ -45,7 +45,7 @@ function Home() {
         )}
         {showNavbar && (
           <>
-            <div className="navbarPage">
+            <div data-aos="fade-left" className="navbarPage">
               <div className="back" onClick={handleShowNavbar}>
                 <FaArrowLeftLong />
               </div>

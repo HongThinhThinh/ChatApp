@@ -13,7 +13,12 @@ function Header() {
         <FaArrowLeftLong />
       </div>
       <h4 className="nameOfFr">{data.chatId ? data.user.displayName : "cc"}</h4>
-      <div className="call-icon">
+      <div
+        className="call-icon"
+        onClick={() => {
+          alert("Đang trong quá trình update");
+        }}
+      >
         <FaVideo />
         <FaUserFriends />
         <CiCircleMore />
