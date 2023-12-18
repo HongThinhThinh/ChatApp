@@ -7,9 +7,26 @@ import "aos/dist/aos.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router";
+import { getAuth, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+import { FacebookLoginButton } from "react-facebook-login";
 AOS.init();
-
 function FormLogin() {
+  const signInwithFacebook = () => {
+    const provider = new FacebookAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+        console.log(result);
+        console.log(credential);
+        console.log(accessToken);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const navigate = useNavigate();
 
   function onFinish(values) {
@@ -96,6 +113,7 @@ function FormLogin() {
         </Form.Item>
         <ButtonOut />
       </Form>
+      <button onClick={signInwithFacebook}>Login with facebook</button>
     </div>
   );
 }
