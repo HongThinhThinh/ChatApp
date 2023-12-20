@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa";
 import { loginWithEmail, loginWithGg } from "../../hooks/firebaseFunc";
 AOS.init();
+
 function FormLogin() {
   const navigate = useNavigate();
   const signInwithGoogle = async () => {
