@@ -9,7 +9,7 @@ const Swal = require("sweetalert2");
 export const loginWithGg = async () => {
   const provider = new GoogleAuthProvider();
   try {
-    const res = await signInWithPopup(auth, provider);
+    await signInWithPopup(auth, provider);
   } catch (e) {}
 };
 export const loginWithEmail = async (email, password) => {
