@@ -19,7 +19,7 @@ function FormRegister() {
 
   const navigate = useNavigate();
 
-  // const defaultAvatar = "https://pnganime.com/web/images/blog_images/done.webp";
+  // /const defaultAvatar = "https://pnganime.com/web/images/blog_images/done.webp";
   const onFinish = async (values) => {
     setShow(false);
     const displayName = values.username;
