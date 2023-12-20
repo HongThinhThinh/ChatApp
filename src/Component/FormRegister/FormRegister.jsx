@@ -12,7 +12,6 @@ import { doc, setDoc } from "firebase/firestore";
 import uploadFile from "../../hooks/useUpload";
 
 import Loading from "../LoadingAtomic/Loading";
-// or via CommonJS
 const Swal = require("sweetalert2");
 AOS.init();
 function FormRegister() {
