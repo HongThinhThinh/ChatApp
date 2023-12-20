@@ -10,7 +10,6 @@ import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router";
 import { doc, setDoc } from "firebase/firestore";
 import uploadFile from "../../hooks/useUpload";
-
 import Loading from "../LoadingAtomic/Loading";
 const Swal = require("sweetalert2");
 AOS.init();
