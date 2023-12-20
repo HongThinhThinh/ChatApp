@@ -27,7 +27,7 @@ export const Message = ({ message }) => {
                   ? currentUser.photoURL
                   : data.user.photoURL
               }
-              alt=""
+              alt="img"
             />
             {/* <span>just now</span> */}
           </div>
