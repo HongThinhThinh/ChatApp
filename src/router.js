@@ -18,8 +18,6 @@ function Router() {
           }
         />
         <Route path="/login" element={<Login />} />
-
-        {/* <Route path="/signup" element={<Register />} /> */}
       </Routes>
     </BrowserRouter>
   );
