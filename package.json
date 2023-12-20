@@ -14,7 +14,6 @@
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.2.2",
     "react-google-login-component": "^0.9.3",
     "react-icons": "^4.12.0",
