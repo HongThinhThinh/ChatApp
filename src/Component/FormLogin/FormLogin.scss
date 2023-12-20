@@ -20,4 +20,30 @@
     color: #4e9aff;
     cursor: pointer;
   }
+  .ggLogin {
+    border: none;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 3px 3px 1px 1px #87c2bd8a;
+    cursor: pointer;
+    transition: 0.9s;
+    span {
+      opacity: 0.6;
+    }
+    &:hover {
+      background-color: #4e9aff;
+    }
+    svg {
+      color: rgb(149, 149, 23);
+      font-size: 20px;
+      margin-right: 10px;
+    }
+  }
 }
