@@ -10,7 +10,6 @@ import { loginWithEmail, loginWithGg } from "../../hooks/firebaseFunc";
 AOS.init();
 function FormLogin() {
   const navigate = useNavigate();
-
   const signInwithGoogle = async () => {
     await loginWithGg();
     navigate("/");
