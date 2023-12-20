@@ -4,7 +4,6 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router";
 const Swal = require("sweetalert2");
 
 export const loginWithGg = async () => {
