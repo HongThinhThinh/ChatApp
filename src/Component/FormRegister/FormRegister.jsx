@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import { doc, setDoc } from "firebase/firestore";
 import uploadFile from "../../hooks/useUpload";
 import Loading from "../LoadingAtomic/Loading";
+import { createUserChat } from "../../hooks/firebaseFunc";
 const Swal = require("sweetalert2");
 AOS.init();
 function FormRegister() {
@@ -37,19 +38,7 @@ function FormRegister() {
         photoURL: URL,
       });
       //create user on firestore
-      await setDoc(doc(db, "users", res.user.uid), {
-        uid: res.user.uid,
-        displayName,
-        email,
-        photoURL: URL,
-      });
-      // chat của mỗi user, ban đầu là object trống nhưng khi nhắn tin với ai sẽ update
-      await setDoc(doc(db, "userChat", res.user.uid), {});
-      Swal.fire({
-        title: "Good job!",
-        text: "SignUp SuccessFully",
-        icon: "success",
-      });
+      await createUserChat(res, displayName, email, URL);
       navigate("/login");
     } catch (error) {
       Swal.fire({
