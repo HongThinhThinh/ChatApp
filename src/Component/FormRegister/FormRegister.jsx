@@ -33,6 +33,8 @@ function FormRegister() {
       } else {
         URL = file;
       }
+      console.log(URL);
+
       await updateProfile(res.user, {
         displayName,
         photoURL: URL,

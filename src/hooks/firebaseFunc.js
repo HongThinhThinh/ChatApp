@@ -28,7 +28,7 @@ export const loginWithEmail = async (email, password) => {
     Swal.fire({
       icon: "error",
       title: "error",
-      text: "Invalid Email or Password",
+      text: `${e.message}`,
     });
   }
 };
